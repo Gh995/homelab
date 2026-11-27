@@ -1,0 +1,12 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance:latest
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    env_file: .env
+    volumes:
+      - ./config:/app/config
+      - /etc/localtime:/etc/localtime:ro
+      - ./assets:/app/assets
