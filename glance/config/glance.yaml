@@ -1,0 +1,61 @@
+server:
+  assets-path: /app/assets
+
+theme:
+  background-color: 240 8 9
+  primary-color: 43 50 70
+  positive-color: 43 50 70
+  negative-color: 358 100 68
+  custom-css-file: /assets/user.css
+
+pages:
+  - name: Startpage
+    width: wide
+    columns:
+      - size: full
+        widgets:
+          - type: search
+            autofocus: true
+            search-engine: google
+
+            new-tab: true
+            bangs:
+              - title: YouTube
+                shortcut: "!yt"
+                url: https://www.youtube.com/results?search_query={QUERY}
+              - title: Github
+                shortcut: "!gh"
+                url: https://github.com/search?q={QUERY}&type=repositories
+
+          - type: monitor
+            cache: 1m
+            title: Services
+            sites:
+              - title: Jellyfin
+                url: http://192.168.0.105:8096
+                icon: di:jellyfin
+              - title: qBittorrent
+                url: http://192.168.0.105:8081
+                icon: di:qbittorrent
+              - title: Pi-hole
+                url: http://192.168.0.105:8082/admin
+                icon: di:pi-hole
+              - title: Nginx Proxy Manager
+                url: http://192.168.0.105:81
+                icon: di:nginx-proxy-manager
+              - title: Glance
+                url: http://192.168.0.105:8080
+                icon: di:glance
+
+      - size: small
+        widgets:
+          - type: dns-stats
+            service: pihole-v6
+            url: http://192.168.0.105:8082
+            password: ${PIHOLE_PASSWORD}
+
+          - type: repository
+            repository: Gh995/homelab
+            pull-requests-limit: 5
+            issues-limit: 3
+            commits-limit: 3
